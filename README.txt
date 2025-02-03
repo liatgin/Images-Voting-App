@@ -15,7 +15,8 @@ Notes:
 2. The app stack is React + Typescript + Next.js on client side and FastAPI + Python on backend with PostgresSQL
 3. Regarding the front: I thought it making sense to cache the images in localStorage since we using the same 100 images
    all the time but When I set the images in localStorage the app became very slow and since I had time constrains
-   I decided not to investigatre the problem and not to cache the images.
+   I decided not to investigate the problem and not to cache the images.
+   But I still think it a good idea to cache the images
 
 
 
