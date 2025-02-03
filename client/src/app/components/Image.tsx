@@ -13,8 +13,8 @@ interface ImageProps {
     imageUrl: string;
     likes: number;
     dislikes: number;
-    setImage: (image: { id: number; likes: number; dislikes: number }) => void;
   };
+  setImage: (image: { id: number; likes: number; dislikes: number }) => void;
 }
 
 const Image: React.FC<ImageProps> = ({ image, setImage }) => {
@@ -40,7 +40,7 @@ const Image: React.FC<ImageProps> = ({ image, setImage }) => {
         image={image.imageUrl}
       />
       <CardContent>
-        {/* Row for likes and dislikes with icons */}
+        {/* Row for number of likes and number of dislikes */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThumbUpIcon sx={{ marginRight: 1 }} />

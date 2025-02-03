@@ -27,6 +27,7 @@ initialize_db_with_images()
 async def populate_images_endpoint():
     populate_images()  # Trigger image population
     return {"message": "Images populated successfully!"}
+
 @app.get("/images")
 async def get_images():
     images = get_images_from_db()
