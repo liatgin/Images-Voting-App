@@ -19,7 +19,7 @@ def get_db_connection():
     finally:
         conn.close()
 
-def create_table():
+def create_db_table():
     with get_db_connection() as conn:
         cursor = conn.cursor()
         create_table_query = """
