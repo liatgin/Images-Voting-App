@@ -40,16 +40,16 @@ async def get_images():
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="No images found in the database.")
         return [{"id": image.id, "imageUrl": image.image_url, "likes": image.likes, "dislikes": image.dislikes} for image in images]
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error retrieving images: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error retrieving images: {e}")
 
 @app.post("/vote/{image_id}/{vote}", status_code=status.HTTP_200_OK)
 def vote(image_id: int, vote: str):
     try:
         if vote not in ['like', 'dislike']:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Vote must be 'like' or 'dislike'.")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Vote must be 'like' or 'dislike'. got: {vote}")
         return vote_on_image(image_id, vote)
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error voting on image_id:{image_id}, {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error voting on image_id:{image_id}, {e}")
 
 @app.get("/download", status_code=status.HTTP_200_OK)
 def download_csv():
@@ -57,4 +57,4 @@ def download_csv():
         csv_file = generate_csv()
         return FileResponse(csv_file, filename="votes.csv", media_type="text/csv")
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error generating CSV: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error generating CSV: {e}")
