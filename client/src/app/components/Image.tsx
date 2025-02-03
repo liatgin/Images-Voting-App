@@ -1,8 +1,11 @@
 'use client'
 
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, Button } from '@mui/material';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 interface ImageProps {
   image: {
@@ -10,7 +13,7 @@ interface ImageProps {
     imageUrl: string;
     likes: number;
     dislikes: number;
-    setImage: (image: { id: number; likes: number; dislikes: number }) => void; // function to update image state
+    setImage: (image: { id: number; likes: number; dislikes: number }) => void;
   };
 }
 
@@ -28,9 +31,8 @@ const Image: React.FC<ImageProps> = ({ image, setImage }) => {
       console.error('Error voting on image:', error);
     }
   };
-
   return (
-    <Card>
+    <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="Image"
@@ -38,14 +40,37 @@ const Image: React.FC<ImageProps> = ({ image, setImage }) => {
         image={image.imageUrl}
       />
       <CardContent>
-        <Typography variant="body2">{image.likes} Likes</Typography>
-        <Typography variant="body2">{image.dislikes} Dislikes</Typography>
-        <Button onClick={() => handleVote('like')} variant="contained" color="primary">
-          Like
-        </Button>
-        <Button onClick={() => handleVote('dislike')} variant="contained" color="secondary">
-          Dislike
-        </Button>
+        {/* Row for likes and dislikes with icons */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <ThumbUpIcon sx={{ marginRight: 1 }} />
+            <span>{image.likes}</span>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <ThumbDownIcon sx={{ marginRight: 1 }} />
+            <span>{image.dislikes}</span>
+          </Box>
+        </Box>
+
+        {/* Row for like and dislike buttons */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button
+            onClick={() => handleVote('like')}
+            variant="contained"
+            color="primary"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            <ThumbUpIcon sx={{ marginRight: 1 }} />
+          </Button>
+          <Button
+            onClick={() => handleVote('dislike')}
+            variant="contained"
+            color="secondary"
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
+            <ThumbDownIcon sx={{ marginRight: 1 }} />
+          </Button>
+        </Box>
       </CardContent>
     </Card>
   );

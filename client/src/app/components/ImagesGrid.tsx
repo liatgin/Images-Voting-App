@@ -16,7 +16,6 @@ interface ImageData {
 const ImagesGrid: React.FC = () => {
   const [images, setImages] = useState<ImageData[]>([]);
 
-  // Fetch and populate images if necessary on first render
   useEffect(() => {
     const populateImages = async () => {
       try {
@@ -36,9 +35,8 @@ const ImagesGrid: React.FC = () => {
       }
     };
 
-    // Call the population endpoint on the first render
     populateImages().then(() => {
-      fetchImages();  // Fetch the images after the population
+      fetchImages();
     });
   }, []);
 
@@ -50,20 +48,6 @@ const ImagesGrid: React.FC = () => {
       )
     );
   };
-
-
-//   return (
-//     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-//       <Grid container spacing={2}>
-//         {images.map((image) => (
-//           <Grid item xs={12} sm={6} md={4} lg={3} key={image.id}>
-//             <Image image={image} setImage={updateImage}/>
-//           </Grid>
-//         ))}
-//       </Grid>
-//     </Box>
-//   );
-// };
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>

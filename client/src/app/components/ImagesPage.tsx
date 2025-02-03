@@ -20,17 +20,6 @@ const ImagesPage: React.FC = () => {
     }
   };
 
-  // return (
-  //   <Container>
-  //     <Typography variant="h3" gutterBottom>
-  //       Images Voting App
-  //     </Typography>
-  //     <Button variant="contained" color="primary" onClick={handleDownload}>
-  //       Download Votes CSV
-  //     </Button>
-  //     <ImagesGrid />
-  //   </Container>
-  // );
   return (
     <Container>
       {/* Title and Button positioned in the same row */}
@@ -43,7 +32,6 @@ const ImagesPage: React.FC = () => {
         </Button>
       </Box>
 
-      {/* Images Grid Component */}
       <ImagesGrid />
     </Container>
   );

@@ -10,8 +10,6 @@ services:
       POSTGRES_DB: image_voting_db
     ports:
       - "5432:5432"
-    volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Mount the SQL file
 
   server:
     build: .
