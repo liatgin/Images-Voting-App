@@ -11,12 +11,8 @@ Running the app:
 Notes:
 ======
 1. I also made a docker-compose.yml that can be run with <docker-compose up --build> after cloning but it take
-   very long time and ends without success so that is why I recommend to run the client localy.
+   very long time and ends without success so that is why I recommend to run the client locally. (I think
+   there is a dependency issue that make it fails)
 2. The app stack is React + Typescript + Next.js on client side and FastAPI + Python on backend with PostgresSQL
-3. Regarding the front: I thought it making sense to cache the images in localStorage since we using the same 100 images
-   all the time but When I set the images in localStorage the app became very slow and since I had time constrains
-   I decided not to investigate the problem and not to cache the images.
-   But I still think it a good idea to cache the images
-
 
 

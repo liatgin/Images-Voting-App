@@ -16,15 +16,13 @@ def get_db_connection():
         port=os.getenv('DB_PORT', 5432)
     )
     try:
-        yield conn  # The connection is provided to the caller
+        yield conn
     finally:
-        conn.close()  # Close the connection when done
+        conn.close()
 
 def create_db_table():
-    """Ensure the images table exists."""
     with get_db_connection() as conn:
         cursor = conn.cursor()
-        # SQL query to create the table if it doesn't exist
         create_table_query = """
         CREATE TABLE IF NOT EXISTS images (
             id SERIAL PRIMARY KEY,
@@ -38,7 +36,6 @@ def create_db_table():
         cursor.close()
 
 def insert_images(images: list):
-    """Insert images into the database."""
     with get_db_connection() as conn:
         cursor = conn.cursor()
         for image in images:
@@ -50,7 +47,6 @@ def insert_images(images: list):
         cursor.close()
 
 def fetch_images_from_lorem_picsum(count=100):
-    """Fetch images from Lorem Picsum API."""
     images = []
     response = requests.get(f'https://picsum.photos/v2/list?page=1&limit={count}')
     if response.status_code == 200:
@@ -61,7 +57,6 @@ def fetch_images_from_lorem_picsum(count=100):
     return images
 
 def initialize_db_with_images():
-    """Initialize the database with images if it's empty."""
     with get_db_connection() as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT COUNT(*) FROM images')
