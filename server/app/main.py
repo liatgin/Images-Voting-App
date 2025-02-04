@@ -2,9 +2,6 @@ from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import FileResponse
 from controllers.image_controller import vote_on_image, generate_csv, get_images_from_db, populate_images
 from db.database import create_db_table, initialize_db_with_images
-
-app = FastAPI()
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
