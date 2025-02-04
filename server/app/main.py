@@ -27,7 +27,7 @@ async def populate_images_endpoint():
         return {"message": "Images populated successfully!"}
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                            detail=f"Error populating images: {str(e)}")
+                            detail=f"Error populating images: {e}")
 
 @app.get("/images", response_model=list[dict], status_code=status.HTTP_200_OK)
 async def get_images():

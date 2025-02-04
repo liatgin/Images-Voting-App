@@ -22,7 +22,7 @@ def populate_images():
 
         if count == 0:
             for _ in range(100):
-                image_url = f"https://picsum.photos/200/300?random={_}"  # Generate a random URL
+                image_url = f"https://picsum.photos/id/{_}/200/350"
                 cursor.execute("INSERT INTO images (image_url, likes, dislikes) VALUES (%s, 0, 0)", (image_url,))
             conn.commit()
 
