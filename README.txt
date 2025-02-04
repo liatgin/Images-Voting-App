@@ -1,18 +1,21 @@
-Running the app:
+Running the App:
 ================
-1. On your machine run: <git clone https://github.com/liatgin/Images-Voting-App.git>
-2. Navigate to server directory and run: <docker-compose up --build>
-   (this will build the fastApi server and the postgres db)
-3. Open another CMD and navigate to client directory: then run:
-- npm install
-- npm run dev
-4. Now you can go to <http://localhost:3000> and test the app
+1. Clone the repository by running:
+   <git clone https://github.com/liatgin/Images-Voting-App.git>
+
+2. Navigate to the server directory and run:
+   <docker-compose up --build>
+   (This will build the FastAPI server and the PostgreSQL database.)
+
+3. Open another command prompt (CMD), navigate to the client directory, then run:
+   - npm install
+   - npm run dev
+
+4. Now you can open your browser and go to:
+   <http://localhost:3000> to test the app.
 
 Notes:
 ======
-1. I also made a docker-compose.yml that can be run with <docker-compose up --build> after cloning but it take
-   very long time and ends without success so that is why I recommend to run the client locally. (I think
-   there is a dependency issue that make it fails)
-2. The app stack is React + Typescript + Next.js on client side and FastAPI + Python on backend with PostgresSQL
-
-
+1. I also created a docker-compose.yml that can be used with <docker-compose up --build> after cloning the repository. However, it takes a long time to build and often ends without success.
+   This is why I recommend running the client locally instead. (I believe there is a dependency issue causing the failure.)
+2. The app stack consists of React + TypeScript + Next.js on the client side, and FastAPI + Python on the backend, with PostgreSQL as the database.
