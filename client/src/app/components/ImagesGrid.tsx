@@ -17,15 +17,6 @@ const ImagesGrid: React.FC = () => {
   const [images, setImages] = useState<ImageData[]>([]);
 
   useEffect(() => {
-    const populateImages = async () => {
-      try {
-        // Trigger the population of images (if the DB is empty)
-        await axios.get('http://localhost:8000/populate-images');
-      } catch (error) {
-        console.error('Error triggering image population:', error);
-      }
-    };
-
     const fetchImages = async () => {
       try {
         const response = await axios.get('http://localhost:8000/images');
@@ -35,9 +26,7 @@ const ImagesGrid: React.FC = () => {
       }
     };
 
-    populateImages().then(() => {
-      fetchImages();
-    });
+    fetchImages();
   }, []);
 
    // Update image state after a vote

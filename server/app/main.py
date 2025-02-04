@@ -1,8 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import FileResponse
-from controllers.image_controller import vote_on_image, generate_csv, get_images_from_db, populate_images
+from controllers.image_controller import vote_on_image, generate_csv, get_images_from_db
 from db.database import create_db_table, initialize_db_with_images
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -19,15 +18,6 @@ create_db_table()
 
 # Initialize the database with images if it's empty
 initialize_db_with_images()
-
-@app.get("/populate-images", status_code=status.HTTP_200_OK)
-async def populate_images_endpoint():
-    try:
-        populate_images()
-        return {"message": "Images populated successfully!"}
-    except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                            detail=f"Error populating images: {e}")
 
 @app.get("/images", response_model=list[dict], status_code=status.HTTP_200_OK)
 async def get_images():

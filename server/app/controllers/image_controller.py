@@ -1,6 +1,5 @@
 import csv
 from fastapi import HTTPException
-
 from db.database import get_db_connection
 from models.image import Image
 
@@ -12,19 +11,6 @@ def get_images_from_db():
         rows = cursor.fetchall()
         images = [Image(id=row[0], image_url=row[1], likes=row[2], dislikes=row[3]) for row in rows]
         return images
-
-
-def populate_images():
-    with get_db_connection() as conn:
-        cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM images")
-        count = cursor.fetchone()[0]
-
-        if count == 0:
-            for _ in range(100):
-                image_url = f"https://picsum.photos/id/{_}/200/350"
-                cursor.execute("INSERT INTO images (image_url, likes, dislikes) VALUES (%s, 0, 0)", (image_url,))
-            conn.commit()
 
 
 def vote_on_image(image_id: int, vote: str):

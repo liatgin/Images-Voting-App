@@ -4,7 +4,6 @@ import requests
 from contextlib import contextmanager
 from models.image import Image
 
-
 @contextmanager
 def get_db_connection():
     """Yield a database connection that will be used throughout the app's lifecycle."""
